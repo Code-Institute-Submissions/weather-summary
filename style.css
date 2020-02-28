@@ -8,6 +8,14 @@ body{
 
 #map {
         width: 100%;
-        height: 90%;
+        height: 100%;
         background-color: grey;
       }
+      
+#title{
+    color:white;
+    position:absolute;
+    z-index:1;
+    background-color:black;
+    padding:5px;
+}

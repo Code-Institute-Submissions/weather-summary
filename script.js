@@ -1,10 +1,10 @@
-/* global google */
-function initMap() {
-  
-  var singapore = {lat: 1.3521, lng: 103.8198};
-  
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 12, center: singapore});
-      
-  var marker = new google.maps.Marker({position: singapore, map: map});
-}
+/* global mapboxgl */
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZXVnZW5ldGVvMTk4OCIsImEiOiJjazc2MnBrem4wYWo0M2VvenNzcmcxNHkwIn0.vTWAuusBOsObe6-hKtokBg';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v11',
+  center: [103.8198, 1.3521],
+  zoom: 11
+});
