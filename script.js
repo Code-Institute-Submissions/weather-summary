@@ -8,3 +8,8 @@ var map = new mapboxgl.Map({
   center: [103.8198, 1.3521],
   zoom: 11
 });
+
+
+map.on('click', function(e) {
+  console.log("click")
+})
