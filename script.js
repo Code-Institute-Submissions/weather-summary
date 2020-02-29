@@ -1,6 +1,7 @@
 /* global mapboxgl */
 /* global axios */
 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZXVnZW5ldGVvMTk4OCIsImEiOiJjazc2MnBrem4wYWo0M2VvenNzcmcxNHkwIn0.vTWAuusBOsObe6-hKtokBg';
 let API_URL = "https://api.data.gov.sg/v1/"
 
@@ -23,11 +24,15 @@ function twentyfourHourForecast(){
     ).then(function(response){
     console.log("API Responded");
     console.log(response.data.api_info.status);
+    
+    let description = response.data.api_info.status
+    
+    forecastPopup(description);
+    
   })
 }
 
-let coordinates = [103.8198, 1.3521]
-let description = "Hello there"
+let coordinates = [103.8198, 1.3521];
 
 map.on('click', function(e) {
   console.log("click")
@@ -35,8 +40,15 @@ map.on('click', function(e) {
 })
 
 map.on('load', function(){
+  twentyfourHourForecast();
+  
+})
+
+function forecastPopup(description){
+  console.log(description)
+  
   new mapboxgl.Popup()
   .setLngLat(coordinates)
   .setHTML(description)
   .addTo(map);
-})
+}
