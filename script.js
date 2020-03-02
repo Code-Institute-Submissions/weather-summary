@@ -25,9 +25,48 @@ function twentyfourHourForecast() {
     console.log("API Responded");
     console.log(response.data.api_info.status);
 
-    let description = response.data.api_info.status
+    let eastStatus = response.data.items[0].periods[1].regions.east
+    let westStatus = response.data.items[0].periods[1].regions.west
+    let northStatus = response.data.items[0].periods[1].regions.north
+    let southStatus = response.data.items[0].periods[1].regions.south
+    let centralStatus = response.data.items[0].periods[1].regions.central
 
-    forecastPopup(description);
+    let north = [103.82065830688276, 1.418685141058404];
+    let south = [103.82065830688276, 1.3119420932638945];
+    let east = [103.71525822143269, 1.3579348547204261];
+    let west = [103.71525822143269, 1.362396792939947];
+    let central = [103.8198, 1.3521];
+
+    let dataPoints = {
+      north: {
+        status: northStatus,
+        plot: north
+      },
+      south: {
+        status: southStatus,
+        plot: south
+      },
+      east: {
+        status: eastStatus,
+        plot: east
+      },
+      west: {
+        status: westStatus,
+        plot: west
+      },
+      central: {
+        status: centralStatus,
+        plot: central
+      }
+
+    };
+    
+    var x;
+    
+    for (x in dataPoints) {
+      console.log(dataPoints[x].status);
+      console.log(dataPoints[x].plot);
+    }
 
   })
 }
@@ -36,47 +75,12 @@ let coordinates = [103.8198, 1.3521];
 
 map.on('click', function(e) {
   console.log("click")
+  console.log(e.lngLat.lng);
+  console.log(e.lngLat.lat);
 
 })
 
 map.on('load', function() {
-  // standard Mapbox cod to load images
-  map.loadImage(
-    "https://img.icons8.com/plasticine/100/000000/rain.png",
-    function(error, image) {
-      if (error) throw error;
-      map.addImage('rain', image);
-      map.addSource('point', {
-        'type': 'geojson',
-        'data': {
-          'type': 'FeatureCollection',
-          'features': [{
-            'type': 'Feature',
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [103.8198, 1.3521]
-            }
-          }]
-        }
-      });
-      map.addLayer({
-        'id': 'points',
-        'type': 'symbol',
-        'source': 'point',
-        'layout': {
-          'icon-image': 'rain',
-          'icon-size': 0.75
-        }
-      });
-    }
-  );
+  twentyfourHourForecast();
+
 });
-
-function forecastPopup(description) {
-  console.log(description)
-
-  new mapboxgl.Popup()
-    .setLngLat(coordinates)
-    .setHTML(description)
-    .addTo(map);
-}
