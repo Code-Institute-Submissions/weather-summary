@@ -33,8 +33,8 @@ function twentyfourHourForecast() {
 
     let north = [103.82065830688276, 1.418685141058404];
     let south = [103.82065830688276, 1.3119420932638945];
-    let east = [103.71525822143269, 1.3579348547204261];
-    let west = [103.71525822143269, 1.362396792939947];
+    let east = [103.94030628661124, 1.3579348547204261];
+    let west = [103.71525822143269, 1.3579348547204261];
     let central = [103.8198, 1.3521];
 
     let dataPoints = {
@@ -60,26 +60,68 @@ function twentyfourHourForecast() {
       }
 
     };
-    
-    function checkStatusNow(){
-      return "Fair & Warm"
-    }
-    
-    let checkStatus = checkStatusNow();
-    
+
+    let weatherLegends = {
+      a: { legend: "Fair" },
+      b: { legend: "Fair & Warm" },
+      c: { legend: "Partly Cloudy" },
+      d: { legend: "Cloudy" },
+      e: { legend: "Hazy" },
+      f: { legend: "Slightly Hazy" },
+      g: { legend: "Windy" },
+      h: { legend: "Mist" },
+      i: { legend: "Light Rain" },
+      j: { legend: "Moderate Rain" },
+      k: { legend: "Heavy Rain" },
+      l: { legend: "Passing Showers" },
+      m: { legend: "Light Shower" },
+      n: { legend: "Showers" },
+      o: { legend: "Heavy Showers" },
+      p: { legend: "Thundery Showers" },
+      q: { legend: "Heavy Thundery Showers" },
+      r: { legend: "Heavy Thundery Showers with Gusty Winds" }
+
+    };
+
+    function checkStatusNow(status) {
+      var y;
+      for (y in weatherLegends) {
+        console.log(weatherLegends[y].legend);
+        let legend = weatherLegends[y].legend;
+
+        if (status == legend) {
+          console.log("check success: " + legend)
+          return legend
+        }
+        else {
+          console.log("check " + y);
+
+        }
+      }
+    };
+
+
+
     var x;
-    
+
     for (x in dataPoints) {
       console.log(dataPoints[x].status);
       console.log(dataPoints[x].plot);
-      
+
       let status = dataPoints[x].status;
       let plot = dataPoints[x].plot;
-      
-      if (status == checkStatus){
-        console.log("function works")
+
+      let checkStatus = checkStatusNow(status);
+
+      if (status == checkStatus) {
+        console.log("function works: " + status);
+
+        var popup = new mapboxgl.Popup({ closeOnClick: false })
+          .setLngLat(plot)
+          .setHTML(x + " : " + status)
+          .addTo(map);
       }
-      
+
     }
 
   })
