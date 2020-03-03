@@ -61,11 +61,25 @@ function twentyfourHourForecast() {
 
     };
     
+    function checkStatusNow(){
+      return "Fair & Warm"
+    }
+    
+    let checkStatus = checkStatusNow();
+    
     var x;
     
     for (x in dataPoints) {
       console.log(dataPoints[x].status);
       console.log(dataPoints[x].plot);
+      
+      let status = dataPoints[x].status;
+      let plot = dataPoints[x].plot;
+      
+      if (status == checkStatus){
+        console.log("function works")
+      }
+      
     }
 
   })
