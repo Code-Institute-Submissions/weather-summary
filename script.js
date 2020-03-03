@@ -35,7 +35,7 @@ function twentyfourHourForecast() {
     let south = [103.82065830688276, 1.3119420932638945];
     let east = [103.94030628661124, 1.3579348547204261];
     let west = [103.71525822143269, 1.3579348547204261];
-    let central = [103.8198, 1.3521];
+    let central = [103.8198, 1.3579348547204261];
 
     let dataPoints = {
       north: {
@@ -116,9 +116,18 @@ function twentyfourHourForecast() {
       if (status == checkStatus) {
         console.log("function works: " + status);
 
-        var popup = new mapboxgl.Popup({ closeOnClick: false })
+        var popup = new mapboxgl.Popup({ offset: 25 }).setText(
+          status
+        );
+
+        // create DOM element for the marker
+        var el = document.createElement('div');
+        el.id = 'marker';
+
+        // create the marker
+        new mapboxgl.Marker(el)
           .setLngLat(plot)
-          .setHTML(x + " : " + status)
+          .setPopup(popup) // sets a popup on this marker
           .addTo(map);
       }
 
