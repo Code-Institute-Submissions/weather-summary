@@ -156,28 +156,29 @@ map.on('click', function(e) {
 })
 
 map.on('load', function() {
-  let currentDate = new Date();
-  console.log(currentDate)
-
-  let year = currentDate.getFullYear();
-  let month = currentDate.getMonth() + 1;
-  if (month < 10) {
-    month = "0" + month
-  }
-  let date = currentDate.getDate();
-  if (date < 10) {
-    date = "0" + date
-  }
-  let fullDate = year + "-" + month + "-" + date;
-
-
+ 
+  checkDate();
+  let fullDate = checkDate();
   twentyfourHourForecast(fullDate);
 
 });
 
 function fetchDate() {
   let date = document.getElementById("date").value;
-  console.log(date);
+  let yearSlice = date.slice(0,4);
+  let monthSlice = date.slice(5,7);
+  let dateSlice = date.slice(8,10);
+  
+  let currentDate = checkDate();
+  let cYearSlice = currentDate.slice(0,4);
+  let cMonthSlice = currentDate.slice(5,7);
+  let cDateSlice = currentDate.slice(8,10);
+  
+  if ( cYearSlice < yearSlice || cMonthSlice < monthSlice || cDateSlice < dateSlice){
+    alert("Please select date before present date.");
+  }
+  
+  else{
   
   var erase = document.getElementById("marker1");
   erase.parentNode.removeChild(erase);
@@ -195,4 +196,25 @@ function fetchDate() {
   erase.parentNode.removeChild(erase);
   
   twentyfourHourForecast(date);
+  }
+    
+  
+}
+
+function checkDate(){
+  let currentDate = new Date();
+  console.log(currentDate)
+
+  let year = currentDate.getFullYear();
+  let month = currentDate.getMonth() + 1;
+  if (month < 10) {
+    month = "0" + month
+  }
+  let date = currentDate.getDate();
+  if (date < 10) {
+    date = "0" + date
+  }
+  let fullDate = year + "-" + month + "-" + date;
+  
+  return fullDate;
 }
