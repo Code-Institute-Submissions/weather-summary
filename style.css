@@ -18,6 +18,7 @@ body {
     z-index: 1;
     background-color: black;
     padding: 5px;
+    margin: 5px;
 }
 
 .mapboxgl-popup {
@@ -68,4 +69,8 @@ body {
     height: 100px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.dropdown-item:focus{
+    background-color:black;
 }
