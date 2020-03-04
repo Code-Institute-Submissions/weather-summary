@@ -25,7 +25,43 @@ body {
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-#marker {
+#marker1 {
+    background-image: url('weather-icons/Cloudy.png');
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#marker2 {
+    background-image: url('weather-icons/Cloudy.png');
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#marker3 {
+    background-image: url('weather-icons/Cloudy.png');
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#marker4 {
+    background-image: url('weather-icons/Cloudy.png');
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#marker5 {
     background-image: url('weather-icons/Cloudy.png');
     background-size: cover;
     width: 100px;

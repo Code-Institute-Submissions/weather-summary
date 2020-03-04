@@ -22,9 +22,7 @@ function twentyfourHourForecast() {
 
     }
   ).then(function(response) {
-    console.log("API Responded");
-    console.log(response.data.api_info.status);
-
+    
     let eastStatus = response.data.items[0].periods[1].regions.east
     let westStatus = response.data.items[0].periods[1].regions.west
     let northStatus = response.data.items[0].periods[1].regions.north
@@ -62,8 +60,15 @@ function twentyfourHourForecast() {
     };
 
     let weatherLegends = {
-      a: { legend: "Fair" },
-      b: { legend: "Fair & Warm" },
+      a: { 
+        legend: "Fair",
+        icon: 'weather-icons/Fair.png'
+      },
+      b: { 
+        legend: "Fair & Warm",
+        icon: 'weather-icons/Fair-and-Warm.png'
+        
+      },
       c: { legend: "Partly Cloudy" },
       d: { legend: "Cloudy" },
       e: { legend: "Hazy" },
@@ -86,49 +91,58 @@ function twentyfourHourForecast() {
     function checkStatusNow(status) {
       var y;
       for (y in weatherLegends) {
-        console.log(weatherLegends[y].legend);
+        
         let legend = weatherLegends[y].legend;
-
+        let icon = weatherLegends[y].icon;
+        let legendIcon = [legend, icon];
+        
         if (status == legend) {
-          console.log("check success: " + legend)
-          return legend
+          
+          return legendIcon;
         }
-        else {
-          console.log("check " + y);
-
-        }
+        
       }
     };
 
 
 
     var x;
-
+    let count = 1;
+    
     for (x in dataPoints) {
-      console.log(dataPoints[x].status);
-      console.log(dataPoints[x].plot);
-
+      
+      
+      
       let status = dataPoints[x].status;
       let plot = dataPoints[x].plot;
 
       let checkStatus = checkStatusNow(status);
-
-      if (status == checkStatus) {
-        console.log("function works: " + status);
-
+      
+      if (status == checkStatus[0]) {
+        
         var popup = new mapboxgl.Popup({ offset: 25 }).setText(
           status
         );
-
+        
+        let markerurl = "url" + "(" + checkStatus[1] + ")";
+        
+        console.log("url chceck: " + markerurl);
+        
         // create DOM element for the marker
         var el = document.createElement('div');
-        el.id = 'marker';
+        let id = "marker" + count;
+        el.id = id;
+        
+        console.log("look here: " + id);        
 
         // create the marker
         new mapboxgl.Marker(el)
           .setLngLat(plot)
           .setPopup(popup) // sets a popup on this marker
           .addTo(map);
+          
+        document.getElementById(id).style.backgroundImage = markerurl;
+        count = count + 1;
       }
 
     }
