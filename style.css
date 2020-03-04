@@ -21,6 +21,16 @@ body {
     margin: 5px;
 }
 
+#date-input{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    /*background-color: black;*/
+    padding: 5px;
+    margin: 5px;
+    left:150px;
+}
+
 .mapboxgl-popup {
     max-width: 400px;
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -72,5 +82,10 @@ body {
 }
 
 .dropdown-item:focus{
+    background-color:black;
+}
+
+.input-group-text{
+    color:white;
     background-color:black;
 }

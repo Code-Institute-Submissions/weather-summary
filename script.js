@@ -13,16 +13,15 @@ var map = new mapboxgl.Map({
   zoom: 11
 });
 
-function twentyfourHourForecast() {
+function twentyfourHourForecast(fullDate) {
   axios.get(
     API_URL + "environment/24-hour-weather-forecast", {
       params: {
-        "date": "2020-02-29"
+        "date": fullDate
       }
 
     }
   ).then(function(response) {
-    
     let eastStatus = response.data.items[0].periods[1].regions.east
     let westStatus = response.data.items[0].periods[1].regions.west
     let northStatus = response.data.items[0].periods[1].regions.north
@@ -60,14 +59,14 @@ function twentyfourHourForecast() {
     };
 
     let weatherLegends = {
-      a: { 
+      a: {
         legend: "Fair",
         icon: 'weather-icons/Fair.png'
       },
-      b: { 
+      b: {
         legend: "Fair & Warm",
         icon: 'weather-icons/Fair-and-Warm.png'
-        
+
       },
       c: { legend: "Partly Cloudy" },
       d: { legend: "Cloudy" },
@@ -91,16 +90,16 @@ function twentyfourHourForecast() {
     function checkStatusNow(status) {
       var y;
       for (y in weatherLegends) {
-        
+
         let legend = weatherLegends[y].legend;
         let icon = weatherLegends[y].icon;
         let legendIcon = [legend, icon];
-        
+
         if (status == legend) {
-          
+
           return legendIcon;
         }
-        
+
       }
     };
 
@@ -110,37 +109,34 @@ function twentyfourHourForecast() {
     let count = 1;
     
     for (x in dataPoints) {
-      
-      
-      
+
+
+
       let status = dataPoints[x].status;
       let plot = dataPoints[x].plot;
 
       let checkStatus = checkStatusNow(status);
       
+      
       if (status == checkStatus[0]) {
-        
+
         var popup = new mapboxgl.Popup({ offset: 25 }).setText(
           status
         );
-        
+
         let markerurl = "url" + "(" + checkStatus[1] + ")";
-        
-        console.log("url chceck: " + markerurl);
-        
+
         // create DOM element for the marker
         var el = document.createElement('div');
         let id = "marker" + count;
         el.id = id;
         
-        console.log("look here: " + id);        
-
         // create the marker
         new mapboxgl.Marker(el)
           .setLngLat(plot)
           .setPopup(popup) // sets a popup on this marker
           .addTo(map);
-          
+
         document.getElementById(id).style.backgroundImage = markerurl;
         count = count + 1;
       }
@@ -160,6 +156,43 @@ map.on('click', function(e) {
 })
 
 map.on('load', function() {
-  twentyfourHourForecast();
+  let currentDate = new Date();
+  console.log(currentDate)
+
+  let year = currentDate.getFullYear();
+  let month = currentDate.getMonth() + 1;
+  if (month < 10) {
+    month = "0" + month
+  }
+  let date = currentDate.getDate();
+  if (date < 10) {
+    date = "0" + date
+  }
+  let fullDate = year + "-" + month + "-" + date;
+
+
+  twentyfourHourForecast(fullDate);
 
 });
+
+function fetchDate() {
+  let date = document.getElementById("date").value;
+  console.log(date);
+  
+  var erase = document.getElementById("marker1");
+  erase.parentNode.removeChild(erase);
+  
+  var erase = document.getElementById("marker2");
+  erase.parentNode.removeChild(erase);
+  
+  var erase = document.getElementById("marker3");
+  erase.parentNode.removeChild(erase);
+  
+  var erase = document.getElementById("marker4");
+  erase.parentNode.removeChild(erase);
+  
+  var erase = document.getElementById("marker5");
+  erase.parentNode.removeChild(erase);
+  
+  twentyfourHourForecast(date);
+}
