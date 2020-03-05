@@ -293,12 +293,12 @@ function checkHumidityandTemp(fullDate) {
     let currentHighTemp = response.data.items[0].general.temperature.high;
     let currentLowHum = response.data.items[0].general.relative_humidity.low;
     let currentHighHum = response.data.items[0].general.relative_humidity.high;
-    
+
     document.getElementById("lowTemp").innerHTML = currentLowTemp + "°C";
     document.getElementById("highTemp").innerHTML = currentHighTemp + "°C";
     document.getElementById("lowHum").innerHTML = currentLowHum + "%";
     document.getElementById("highHum").innerHTML = currentHighHum + "%";
-    
+
     console.log(currentLowTemp)
     console.log(currentHighTemp)
 
@@ -306,3 +306,17 @@ function checkHumidityandTemp(fullDate) {
 }
 
 checkHumidityandTemp(checkDate());
+
+let test = document.getElementById("temperatureChk").checked;
+console.log("this is a test: " + test);
+
+function tempStatusChk() {
+  let tempChk = document.getElementById("temperatureChk").checked;
+  if(tempChk == true){
+    document.getElementById("temperature").style.display = "block";
+  }
+  else{
+    document.getElementById("temperature").style.display = "none";
+  }
+  
+}

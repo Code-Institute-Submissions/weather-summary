@@ -24,9 +24,24 @@
       Weather Map
     </div>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#" onclick="showSearchBar()">Search Date</a>
-      <a class="dropdown-item" href="#">Temperature</a>
-      <a class="dropdown-item" href="#">Humidity</a>
+      <form>
+        <div class="form-check dropdown-item">
+          <input type="checkbox" class="form-check-input" id="searchDateChk">
+          <label class="form-check-label" for="dropdownCheck">Search Date</label>
+        </div>
+      
+      
+        <div class="form-check dropdown-item">
+          <input type="checkbox" class="form-check-input" id="temperatureChk" onclick="tempStatusChk()">
+          <label class="form-check-label" for="dropdownCheck">Temperature</label>
+        </div>
+      
+      
+        <div class="form-check dropdown-item">
+          <input type="checkbox" class="form-check-input" id="humidityChk">
+          <label class="form-check-label" for="dropdownCheck">Humidity</label>
+        </div>
+      </form>
     </div>
   </div>
   <div id="date-input">
@@ -53,7 +68,7 @@
   <!--The div element for the map -->
   <div id="map"></div>
 
-  
+
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -74,12 +89,12 @@
       </div>
     </div>
   </div>
-  
+
   <!--AXIOS NPM-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- Optional JavaScript -->
   <script type="text/javascript" src="script.js"></script>
-  
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
