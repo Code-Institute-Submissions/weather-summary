@@ -24,7 +24,7 @@
       Weather Map
     </div>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Search Date</a>
+      <a class="dropdown-item" href="#" onclick="showSearchBar()">Search Date</a>
       <a class="dropdown-item" href="#">Temperature</a>
       <a class="dropdown-item" href="#">Humidity</a>
     </div>
@@ -39,7 +39,16 @@
         <button class="btn btn-dark" type="button" onclick="fetchDate()">Search</button>
       </div>
     </div>
-
+  </div>
+  <div id="temperature">
+    <h3>Temperature</h3>
+    <h5>Highest Today: <span id="highTemp"></span></h5>
+    <h5>Lowest Today: <span id="lowTemp"></span></h5>
+  </div>
+  <div id="humidity">
+    <h3>Humidity</h3>
+    <h5>Highest Today: <span id="highHum"></span></h5>
+    <h5>Lowest Today: <span id="lowHum"></span></h5>
   </div>
   <!--The div element for the map -->
   <div id="map"></div>
@@ -65,11 +74,12 @@
       </div>
     </div>
   </div>
-
-  <!-- Optional JavaScript -->
-  <script type="text/javascript" src="script.js"></script>
+  
   <!--AXIOS NPM-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- Optional JavaScript -->
+  <script type="text/javascript" src="script.js"></script>
+  
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

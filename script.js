@@ -14,7 +14,6 @@ var map = new mapboxgl.Map({
 });
 
 function twentyfourHourForecast(fullDate) {
-  console.log("function triggered")
   axios.get(
     API_URL + "environment/24-hour-weather-forecast", {
       params: {
@@ -23,7 +22,6 @@ function twentyfourHourForecast(fullDate) {
 
     }
   ).then(function(response) {
-    console.log("Axios responded")
     let eastStatus = response.data.items[0].periods[0].regions.east
     let westStatus = response.data.items[0].periods[0].regions.west
     let northStatus = response.data.items[0].periods[0].regions.north
@@ -155,7 +153,7 @@ function twentyfourHourForecast(fullDate) {
     function checkStatusNow(status) {
       var y;
       for (y in weatherLegends) {
-        console.log("weatherLegends triggered");
+
         let legend = weatherLegends[y].legend;
         let icon = weatherLegends[y].icon;
         let legendIcon = [legend, icon];
@@ -173,16 +171,12 @@ function twentyfourHourForecast(fullDate) {
     let count = 1;
 
     for (x in dataPoints) {
-      console.log(x)
-      console.log("loop triggered")
-      console.log("loop no. : " + count)
 
       let status = dataPoints[x].status;
       let plot = dataPoints[x].plot;
 
       let checkStatus = checkStatusNow(status);
-      console.log("current status: " + status)
-      console.log("check status: " + checkStatus[0] + " " + checkStatus[1])
+
       if (status == checkStatus[0]) {
 
         var popup = new mapboxgl.Popup({ offset: 25 }).setText(
@@ -221,7 +215,7 @@ map.on('click', function(e) {
 })
 
 map.on('load', function() {
-  console.log("load triggered")
+
   let fullDate = checkDate();
   twentyfourHourForecast(fullDate);
 
@@ -267,7 +261,7 @@ function fetchDate() {
 
 function checkDate() {
   let currentDate = new Date();
-  console.log("date triggered")
+
   let year = currentDate.getFullYear();
   let month = currentDate.getMonth() + 1;
   if (month < 10) {
@@ -280,3 +274,35 @@ function checkDate() {
   let fullDate = year + "-" + month + "-" + date;
   return fullDate;
 }
+
+function showSearchBar() {
+  document.getElementById("date-input").style.display = "block";
+}
+
+function checkHumidityandTemp(fullDate) {
+  axios.get(
+    API_URL + "environment/24-hour-weather-forecast", {
+      params: {
+        "date": fullDate
+      }
+
+    }
+  ).then(function(response) {
+
+    let currentLowTemp = response.data.items[0].general.temperature.low;
+    let currentHighTemp = response.data.items[0].general.temperature.high;
+    let currentLowHum = response.data.items[0].general.relative_humidity.low;
+    let currentHighHum = response.data.items[0].general.relative_humidity.high;
+    
+    document.getElementById("lowTemp").innerHTML = currentLowTemp + "°C";
+    document.getElementById("highTemp").innerHTML = currentHighTemp + "°C";
+    document.getElementById("lowHum").innerHTML = currentLowHum + "%";
+    document.getElementById("highHum").innerHTML = currentHighHum + "%";
+    
+    console.log(currentLowTemp)
+    console.log(currentHighTemp)
+
+  })
+}
+
+checkHumidityandTemp(checkDate());

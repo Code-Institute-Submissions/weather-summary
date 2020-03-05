@@ -22,6 +22,7 @@ body {
 }
 
 #date-input{
+    display:none;
     color: white;
     position: absolute;
     z-index: 1;
@@ -88,4 +89,27 @@ body {
 .input-group-text{
     color:white;
     background-color:black;
+}
+
+#temperature{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    padding: 5px;
+    margin: 5px;
+    top:75%;
+    width:200px;
+}
+
+#humidity{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    background-color: black;
+    padding: 5px;
+    margin: 5px;
+    top:75%;
+    left: 210px;
+    width:200px;
 }
