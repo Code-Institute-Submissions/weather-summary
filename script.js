@@ -233,7 +233,7 @@ function fetchDate() {
   let cDateSlice = currentDate.slice(8, 10);
 
   if (cYearSlice < yearSlice || cMonthSlice < monthSlice || cDateSlice < dateSlice) {
-    alert("Please select date before present date.");
+    $('#staticBackdrop').modal("show");
   }
 
   else {
