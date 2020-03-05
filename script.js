@@ -276,7 +276,13 @@ function checkDate() {
 }
 
 function showSearchBar() {
-  document.getElementById("date-input").style.display = "block";
+  let dateChk = document.getElementById("searchDateChk").checked;
+  if(dateChk == true){
+    document.getElementById("date-input").style.display = "block";
+  }
+  else{
+    document.getElementById("date-input").style.display = "none";
+  }
 }
 
 function checkHumidityandTemp(fullDate) {
@@ -307,9 +313,6 @@ function checkHumidityandTemp(fullDate) {
 
 checkHumidityandTemp(checkDate());
 
-let test = document.getElementById("temperatureChk").checked;
-console.log("this is a test: " + test);
-
 function tempStatusChk() {
   let tempChk = document.getElementById("temperatureChk").checked;
   if(tempChk == true){
@@ -318,5 +321,14 @@ function tempStatusChk() {
   else{
     document.getElementById("temperature").style.display = "none";
   }
-  
+}
+
+function humStatusChk() {
+  let humChk = document.getElementById("humidityChk").checked;
+  if(humChk == true){
+    document.getElementById("humidity").style.display = "block";
+  }
+  else{
+    document.getElementById("humidity").style.display = "none";
+  }
 }
