@@ -235,6 +235,11 @@ function fetchDate() {
   if (cYearSlice < yearSlice || cMonthSlice < monthSlice || cDateSlice < dateSlice) {
     $('#staticBackdrop').modal("show");
   }
+  
+  else if (date == ""){
+    document.getElementById("custom-modal-content").innerHTML = "Please enter a date.";
+    $('#staticBackdrop').modal("show");
+  }
 
   else {
 
