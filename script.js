@@ -207,13 +207,6 @@ function twentyfourHourForecast(fullDate) {
 
 let coordinates = [103.8198, 1.3521];
 
-map.on('click', function(e) {
-  console.log("click")
-  console.log(e.lngLat.lng);
-  console.log(e.lngLat.lat);
-
-})
-
 map.on('load', function() {
 
   let fullDate = checkDate();
@@ -309,9 +302,6 @@ function checkHumidityandTemp(fullDate) {
     document.getElementById("highTemp").innerHTML = currentHighTemp + "°C";
     document.getElementById("lowHum").innerHTML = currentLowHum + "%";
     document.getElementById("highHum").innerHTML = currentHighHum + "%";
-
-    console.log(currentLowTemp)
-    console.log(currentHighTemp)
 
   })
 }
