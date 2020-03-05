@@ -14,6 +14,7 @@ var map = new mapboxgl.Map({
 });
 
 function twentyfourHourForecast(fullDate) {
+  console.log("function triggered")
   axios.get(
     API_URL + "environment/24-hour-weather-forecast", {
       params: {
@@ -22,11 +23,12 @@ function twentyfourHourForecast(fullDate) {
 
     }
   ).then(function(response) {
-    let eastStatus = response.data.items[0].periods[1].regions.east
-    let westStatus = response.data.items[0].periods[1].regions.west
-    let northStatus = response.data.items[0].periods[1].regions.north
-    let southStatus = response.data.items[0].periods[1].regions.south
-    let centralStatus = response.data.items[0].periods[1].regions.central
+    console.log("Axios responded")
+    let eastStatus = response.data.items[0].periods[0].regions.east
+    let westStatus = response.data.items[0].periods[0].regions.west
+    let northStatus = response.data.items[0].periods[0].regions.north
+    let southStatus = response.data.items[0].periods[0].regions.south
+    let centralStatus = response.data.items[0].periods[0].regions.central
 
     let north = [103.82065830688276, 1.418685141058404];
     let south = [103.82065830688276, 1.3119420932638945];
@@ -61,42 +63,104 @@ function twentyfourHourForecast(fullDate) {
     let weatherLegends = {
       a: {
         legend: "Fair",
-        icon: 'weather-icons/Fair.png'
+        icon: "weather-icons/Fair.png"
       },
       b: {
         legend: "Fair & Warm",
-        icon: 'weather-icons/Fair-and-Warm.png'
-
+        icon: "weather-icons/Fair-and-Warm.png"
       },
-      c: { legend: "Partly Cloudy" },
-      d: { legend: "Cloudy" },
-      e: { legend: "Hazy" },
-      f: { legend: "Slightly Hazy" },
-      g: { legend: "Windy" },
-      h: { legend: "Mist" },
-      i: { legend: "Light Rain" },
-      j: { legend: "Moderate Rain" },
-      k: { legend: "Heavy Rain" },
-      l: { legend: "Passing Showers" },
-      m: { legend: "Light Shower" },
-      n: { legend: "Showers" },
-      o: { legend: "Heavy Showers" },
-      p: { legend: "Thundery Showers" },
-      q: { legend: "Heavy Thundery Showers" },
-      r: { legend: "Heavy Thundery Showers with Gusty Winds" }
+      c: {
+        legend: "Partly Cloudy",
+        icon: "weather-icons/Partly-Cloudy.png"
+      },
+      d: {
+        legend: "Cloudy",
+        icon: "weather-icons/Cloudy.png"
+      },
+      e: {
+        legend: "Hazy",
+        icon: "weather-icons/Hazy.png"
+      },
+      f: {
+        legend: "Slightly Hazy",
+        icon: "weather-icons/Slightly-Hazy.png"
+      },
+      g: {
+        legend: "Windy",
+        icon: "weather-icons/Windy.png"
+      },
+      h: {
+        legend: "Mist",
+        icon: "weather-icons/Mist.png"
+      },
+      i: {
+        legend: "Light Rain",
+        icon: "weather-icons/Light-Rain.png"
+      },
+      j: {
+        legend: "Moderate Rain",
+        icon: "weather-icons/Moderate-Rain.png"
+      },
+      k: {
+        legend: "Heavy Rain",
+        icon: "weather-icons/Heavy-Rain.png"
+      },
+      l: {
+        legend: "Passing Showers",
+        icons: "weather-icons/Passing-Showers.png"
+      },
+      m: {
+        legend: "Light Shower",
+        icon: "weather-icons/Light-Shower.png"
+      },
+      n: {
+        legend: "Showers",
+        icon: "weather-icons/Showers.png"
+      },
+      o: {
+        legend: "Heavy Showers",
+        icon: "weather-icons/Heavy-Showers.png"
+      },
+      p: {
+        legend: "Thundery Showers",
+        icon: "weather-icons/Thundery-Showers.png"
+      },
+      q: {
+        legend: "Heavy Thundery Showers",
+        icon: "weather-icons/Heavy-Thundery-Showers"
+      },
+      r: {
+        legend: "Heavy Thundery Showers with Gusty Winds",
+        icon: "weather-icons/Heavy-Thundery-Showers-with-Gusty-Winds"
+      },
+      s: {
+        legend: "Fair (Day)",
+        icon: "weather-icons/Fair.png"
+      },
+      t: {
+        legend: "Partly Cloudy (Day)",
+        icon: "weather-icons/Partly-Cloudy.png"
+      },
+      u: {
+        legend: "Fair (Night)",
+        icon: "weather-icons/Fair.png"
+      },
+      v: {
+        legend: "Partly Cloudy (Night)",
+        icon: "weather-icons/Partly-Cloudy.png"
+      }
 
     };
 
     function checkStatusNow(status) {
       var y;
       for (y in weatherLegends) {
-
+        console.log("weatherLegends triggered");
         let legend = weatherLegends[y].legend;
         let icon = weatherLegends[y].icon;
         let legendIcon = [legend, icon];
 
         if (status == legend) {
-
           return legendIcon;
         }
 
@@ -107,17 +171,18 @@ function twentyfourHourForecast(fullDate) {
 
     var x;
     let count = 1;
-    
+
     for (x in dataPoints) {
-
-
+      console.log(x)
+      console.log("loop triggered")
+      console.log("loop no. : " + count)
 
       let status = dataPoints[x].status;
       let plot = dataPoints[x].plot;
 
       let checkStatus = checkStatusNow(status);
-      
-      
+      console.log("current status: " + status)
+      console.log("check status: " + checkStatus[0] + " " + checkStatus[1])
       if (status == checkStatus[0]) {
 
         var popup = new mapboxgl.Popup({ offset: 25 }).setText(
@@ -130,7 +195,7 @@ function twentyfourHourForecast(fullDate) {
         var el = document.createElement('div');
         let id = "marker" + count;
         el.id = id;
-        
+
         // create the marker
         new mapboxgl.Marker(el)
           .setLngLat(plot)
@@ -156,8 +221,7 @@ map.on('click', function(e) {
 })
 
 map.on('load', function() {
- 
-  checkDate();
+  console.log("load triggered")
   let fullDate = checkDate();
   twentyfourHourForecast(fullDate);
 
@@ -165,46 +229,45 @@ map.on('load', function() {
 
 function fetchDate() {
   let date = document.getElementById("date").value;
-  let yearSlice = date.slice(0,4);
-  let monthSlice = date.slice(5,7);
-  let dateSlice = date.slice(8,10);
-  
+  let yearSlice = date.slice(0, 4);
+  let monthSlice = date.slice(5, 7);
+  let dateSlice = date.slice(8, 10);
+
   let currentDate = checkDate();
-  let cYearSlice = currentDate.slice(0,4);
-  let cMonthSlice = currentDate.slice(5,7);
-  let cDateSlice = currentDate.slice(8,10);
-  
-  if ( cYearSlice < yearSlice || cMonthSlice < monthSlice || cDateSlice < dateSlice){
+  let cYearSlice = currentDate.slice(0, 4);
+  let cMonthSlice = currentDate.slice(5, 7);
+  let cDateSlice = currentDate.slice(8, 10);
+
+  if (cYearSlice < yearSlice || cMonthSlice < monthSlice || cDateSlice < dateSlice) {
     alert("Please select date before present date.");
   }
-  
-  else{
-  
-  var erase = document.getElementById("marker1");
-  erase.parentNode.removeChild(erase);
-  
-  var erase = document.getElementById("marker2");
-  erase.parentNode.removeChild(erase);
-  
-  var erase = document.getElementById("marker3");
-  erase.parentNode.removeChild(erase);
-  
-  var erase = document.getElementById("marker4");
-  erase.parentNode.removeChild(erase);
-  
-  var erase = document.getElementById("marker5");
-  erase.parentNode.removeChild(erase);
-  
-  twentyfourHourForecast(date);
+
+  else {
+
+    var erase = document.getElementById("marker1");
+    erase.parentNode.removeChild(erase);
+
+    var erase = document.getElementById("marker2");
+    erase.parentNode.removeChild(erase);
+
+    var erase = document.getElementById("marker3");
+    erase.parentNode.removeChild(erase);
+
+    var erase = document.getElementById("marker4");
+    erase.parentNode.removeChild(erase);
+
+    var erase = document.getElementById("marker5");
+    erase.parentNode.removeChild(erase);
+
+    twentyfourHourForecast(date);
   }
-    
-  
+
+
 }
 
-function checkDate(){
+function checkDate() {
   let currentDate = new Date();
-  console.log(currentDate)
-
+  console.log("date triggered")
   let year = currentDate.getFullYear();
   let month = currentDate.getMonth() + 1;
   if (month < 10) {
@@ -215,6 +278,5 @@ function checkDate(){
     date = "0" + date
   }
   let fullDate = year + "-" + month + "-" + date;
-  
   return fullDate;
 }
