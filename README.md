@@ -54,7 +54,7 @@ Icons on the map are done with Mapbox markers and will change according to the w
 
 ## Testing
 
-Testing was done manually without the help of any automated test program. It was done with the following test sheet: [Weather Map Test Sheet](https://github.com/eugeneteo88/weather-summary/tree/master/wireframes/Testing Sheet - Weather Summary.docx)
+Testing was done manually without the help of any automated test program. It was done with the following test sheet: [Weather Map Test Sheet](https://github.com/eugeneteo88/weather-summary/tree/master/wireframes/Testing-Sheet-Weather-Summary.docx)
 
 ## Issues and Future Implementation
 
