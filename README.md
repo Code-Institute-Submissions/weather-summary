@@ -16,7 +16,7 @@ To clone the repo, simply type in the following into your terminal :
 
 The following picture is the wireframe for the weather map. The goal was to make it as simple and least cluttered as possible. It should allow users to find what they need in the least possible clicks.
 
-![img](file:///C:/Users/Muhd%20Arif%20Bin%20Rawi/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png)
+![wireframe-image](https://github.com/eugeneteo88/weather-summary/tree/master/wireframes/weather-summary-wireframe.png)
 
 ## Technologies
 
@@ -54,7 +54,7 @@ Icons on the map are done with Mapbox markers and will change according to the w
 
 ## Testing
 
-Testing was done manually without the help of any automated test program. It was done with the following test sheet: [Weather Map Test Sheet]()
+Testing was done manually without the help of any automated test program. It was done with the following test sheet: [Weather Map Test Sheet](https://github.com/eugeneteo88/weather-summary/tree/master/wireframes/Testing Sheet - Weather Summary.docx)
 
 ## Issues and Future Implementation
 
@@ -77,6 +77,6 @@ This can be found under Project Repository > Settings > GitHub Pages
 
 The map is owned by Mapbox. 
 
-Icons were made with the suggestion and help of a friend using PowerPoint and can be found here: [PowerPoint Icons]()
+Icons were made with the suggestion and help of a friend using PowerPoint and can be found here: [PowerPoint Icons](https://github.com/eugeneteo88/weather-summary/tree/master/wireframes/Weather-summary-icons.pptx)
 
 **This project was created for educational purposes only.**
