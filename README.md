@@ -16,7 +16,7 @@ To clone the repo, simply type in the following into your terminal :
 
 The following picture is the wireframe for the weather map. The goal was to make it as simple and least cluttered as possible. It should allow users to find what they need in the least possible clicks.
 
-![wireframe-image](https://github.com/eugeneteo88/weather-summary/tree/master/wireframes/weather-summary-wireframe.png)
+![wireframe-image](wireframes/weather-summary-wireframe.png)
 
 ## Technologies
 
