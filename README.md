@@ -4,7 +4,7 @@ Weather Summary tracks the current weather forecast in Singapore! Thanks to the 
 
 ## Getting Started
 
-You can find the deployed page here: 
+You can find the deployed page here: [Weather Summary](https://eugeneteo88.github.io/weather-summary/)
 
 No installation or account creation is needed. If you wish to run this file locally, you can clone or download this code by clicking on the “Clone or Download” button. 
 
